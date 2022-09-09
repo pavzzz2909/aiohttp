@@ -33,11 +33,3 @@ class AuthError(BasicException):
 class BadRequest(BasicException):
     status_code = 400
     default_message = 'BAD_REQUEST'
-
-
-@app.errorhandler(BadRequest)
-@app.errorhandler(NotFound)
-async def handle_invalid_usage(error):
-    response = jsonify(error.to_dict())
-    response.status_code = error.status_code
-    return response
